@@ -1,0 +1,52 @@
+body {
+    background-color: #003054;
+}
+header h1 {
+    display: inline;
+    font-size: 60px;
+}
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
+    color: #fff;
+}
+#card-table {
+    text-align: center;
+    width: 900px;
+    height: 500px;
+    margin: 19px auto;
+    background-color: #19c36b;
+    border: 1px solid #19c36b;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 0 19px 2px #060C4F;
+}
+#card-table h2 {
+    height: 50px;
+}
+#dealer-hand {
+    width: 900px;
+    height: 150px;
+}
+#status {
+    width: 900px;
+    height: 50px;
+}
+#player-hand {
+    width: 900px;
+    height: 150px;
+}
+#player-options {
+    width: 900px;
+    height: 150px;
+}
+button#newGame {
+    
+}
+button#hit {
+    display: none;
+}
+button#stand {
+    display: none;
+}
