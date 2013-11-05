@@ -44,10 +44,10 @@ header h1 {
 button#newGame {
     
 }
-button#hit {
+button#btn-hit {
     display: none;
 }
-button#stand {
+button#btn-stand {
     display: none;
 }
 .card {

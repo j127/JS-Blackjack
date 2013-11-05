@@ -44,6 +44,14 @@ function newGame() {
     // TODO: Clear local storage here?
 
     getShoe(2);
+    dealHands();
+    displayDealerHand(false);
+    displayPlayerHand();
+
+    // Show 'hit' and 'stand' buttons
+    $('#btn-hit').fadeIn();
+    $('#btn-stand').fadeIn();
+
     stringifiedShoe = localStorage.getItem('shoe');
     log(stringifiedShoe);
     theShoe = JSON.parse(stringifiedShoe);
@@ -206,5 +214,4 @@ function displayPlayerHand() {
 function displayStatusMessage(msg) {
     $('#status').text(msg);
 }
-
 
