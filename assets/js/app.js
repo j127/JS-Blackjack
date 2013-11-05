@@ -89,7 +89,7 @@ function shuffleDeck(o) {
     return o;
 }
 
-function dealCard(user) {
+function dealCard() {
     var shoeArray = [],
         shoeArrayStringified,
         cardFace,
@@ -103,6 +103,8 @@ function dealCard(user) {
         cardValues,
         cardObj;
 
+    // TODO: figure out why they get the same card
+
     // Get the deck(s) out of localStorage in string form
     shoeArrayStringified = localStorage.getItem('shoe');
 
@@ -110,11 +112,7 @@ function dealCard(user) {
     shoeArray = JSON.parse(shoeArrayStringified);
 
     // Get the first item
-    if (user === 'player') {
-        card = shoeArray[0].splice(0, 1);
-    } else {
-        card = shoeArray[1].splice(0, 1);
-    }
+    card = shoeArray[0].splice(0, 1);
 
     // Make card an object instead of a one-element array
     card = card[0];
@@ -171,8 +169,27 @@ function dealHands() {
     localStorage.setItem('playerHand', playerHandStringified);
 }
 
-function displayDealerHand() {
+function displayDealerHand(reveal) {
+    var dealerHandStringified, dealerHand, hand;
 
+    dealerHandStringified = localStorage.getItem('dealerHand');
+    dealerHand = JSON.parse(dealerHandStringified);
+
+    if (reveal === true) {
+        hand = {};
+        hand.cards = dealerHand;
+    } else {
+        hand = {};
+        hand.cards = dealerHand[0];
+        hand.back = true;
+    }
+
+    var template = $('#tpl-hand').html();
+    var html = Mustache.render(template, hand);
+
+    $('#dealer-hand').html(html);
+//• The hand variable should then be used to render the ‘tpl-hand’ template.
+//• The resulting output should be used to populate the div with an id of ‘dealer-hand’.
 }
 
 function displayPlayerHand() {
