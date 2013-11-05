@@ -145,8 +145,8 @@ function dealCard() {
 
     // Make card an object instead of a one-element array
     card = card[0];
-    log('dealCard() says card is: ' + card);
-    log(card);
+    log('dealCard() says card is:' + card);
+    console.dir(card);
     cardFace = card.face;
     cardSuit = card.suit;
 
@@ -193,8 +193,18 @@ function dealHands() {
     playerHand.push(dealCard('player'));
     playerHand.push(dealCard('player'));
 
+    log('dealerHand should have two objects =>');
+    console.dir(dealerHand);
+    log('playerHand should have two objects =>');
+    console.dir(playerHand);
+
     dealerHandStringified = JSON.stringify(dealerHand);
     playerHandStringified = JSON.stringify(playerHand);
+
+    log('dealerHandStringified:');
+    console.dir(dealerHandStringified);
+    log('playerHandStringified:');
+    console.dir(playerHandStringified);
 
     localStorage.setItem('dealerHand', dealerHandStringified);
     localStorage.setItem('playerHand', playerHandStringified);
@@ -211,6 +221,7 @@ function displayDealerHand(reveal) {
         hand = {};
         hand.cards = dealerHand;
     } else {
+        // TODO: look for errors here
         hand = {};
         hand.cards = dealerHand[0];
         hand.back = true;
