@@ -45,7 +45,13 @@ function displayStatusMessage(msg) {
 function newGame() {
     getShoe();
 }
-function getShoe() {
+function getShoe(decks) {
+    var shoe = [];
+
+    for (i = 0; i < decks; i++) {
+        shoe.push(getDeck());
+    }
+    log(shoe);
     
 }
 function getDeck() {
@@ -56,17 +62,14 @@ function getDeck() {
 
     for (var i = 0, len = suits.length; i < len; i++) {
         for (var j = 0, len2 = faces.length; j < len2; j++) {
-            //log('j:');
-            //log(j);
-            //log('i:');
-            //log(i);
+            card = {};
             card.suit = suits[i];
             card.face = faces[j];
-            //log(card);
             deck.push(card);
         }
     }
     log(deck);
+    return deck;
 }
 
 
