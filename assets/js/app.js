@@ -3,7 +3,7 @@ $(document).ready(function() {
         $('#newGame').prop('disabled', true);
     } else {
         $('#newGame').on('click', function(e) {
-
+            newGame();
         });
     }
 });
@@ -43,7 +43,13 @@ function displayStatusMessage(msg) {
 }
 
 function newGame() {
-    getShoe();
+    // TODO: Clear local storage here?
+
+    getShoe(2);
+    stringifiedShoe = localStorage.getItem('shoe');
+    log(stringifiedShoe);
+    theShoe = JSON.parse(stringifiedShoe);
+    log(theShoe);
 }
 function getShoe(decks) {
     var shoe = [];
@@ -51,8 +57,8 @@ function getShoe(decks) {
     for (i = 0; i < decks; i++) {
         shoe.push(getDeck());
     }
-    log(shoe);
-    
+    stringifiedShoe = JSON.stringify(shoe);
+    localStorage.setItem('shoe', stringifiedShoe);
 }
 function getDeck() {
     var deck =[],
