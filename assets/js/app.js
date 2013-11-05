@@ -61,7 +61,7 @@ function getShoe(decks) {
     localStorage.setItem('shoe', stringifiedShoe);
 }
 function getDeck() {
-    var deck =[],
+    var deck = [],
         suits = ['S', 'H', 'D', 'C'],
         faces = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
         card = {};
@@ -89,7 +89,7 @@ function shuffleDeck(o) {
     return o;
 }
 
-function dealCard() {
+function dealCard(user) {
     var shoeArray = [],
         shoeArrayStringified,
         cardFace,
@@ -100,7 +100,8 @@ function dealCard() {
         cardFileFaces,
         cardFaceIndex,
         cardFileFace,
-        cardValues;
+        cardValues,
+        cardObj;
 
     // Get the deck(s) out of localStorage in string form
     shoeArrayStringified = localStorage.getItem('shoe');
@@ -109,7 +110,11 @@ function dealCard() {
     shoeArray = JSON.parse(shoeArrayStringified);
 
     // Get the first item
-    card = shoeArray[0].splice(0, 1);
+    if (user === 'player') {
+        card = shoeArray[0].splice(0, 1);
+    } else {
+        card = shoeArray[1].splice(0, 1);
+    }
 
     // Make card an object instead of a one-element array
     card = card[0];
@@ -124,7 +129,7 @@ function dealCard() {
     //}
     
     // Prepare to substitute filename values for the card faces
-    cardFaces = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    cardFaces = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
     cardFileFaces = ['01','02','03','04','05','06','07','08','09','10','11','12','13'];
     cardValues = [1,2,3,4,5,6,7,8,9,10,10,10,10];
     
@@ -148,7 +153,22 @@ function dealCard() {
 }
 
 function dealHands() {
+    var dealerHand = [],
+        playerHand = [],
+        dealerHandStringified,
+        playerHandStringified;
 
+    // Deal two cards each
+    dealerHand.push(dealCard('dealer'));
+    dealerHand.push(dealCard('dealer'));
+    playerHand.push(dealCard('player'));
+    playerHand.push(dealCard('player'));
+
+    dealerHandStringified = JSON.stringify(dealerHand);
+    playerHandStringified = JSON.stringify(playerHand);
+
+    localStorage.setItem('dealerHand', dealerHandStringified);
+    localStorage.setItem('playerHand', playerHandStringified);
 }
 
 function displayDealerHand() {
