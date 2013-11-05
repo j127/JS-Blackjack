@@ -57,6 +57,7 @@ function getShoe(decks) {
     for (i = 0; i < decks; i++) {
         shoe.push(getDeck());
     }
+    
     stringifiedShoe = JSON.stringify(shoe);
     localStorage.setItem('shoe', stringifiedShoe);
 }
@@ -75,11 +76,16 @@ function getDeck() {
         }
     }
     log(deck);
-    return deck;
+    shuffledDeck = shuffleDeck(deck);
+    log(shuffledDeck);
+    return shuffledDeck;
 }
 
 
 function log(msg) {
     console.log(msg);
 }
-
+function shuffleDeck(o) {
+    for (var j, x, i = o.length; i; j = parseInt(Math.random() * i, 10), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
