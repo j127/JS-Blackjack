@@ -132,22 +132,19 @@ function dealCard() {
     cardFileFace = cardFileFaces[cardFaceIndex];
 
     // Example file name: h02.png
-    cardImage = cardSuit.toLowerCase() + cardFace + '.png';
+    cardImage = cardSuit.toLowerCase() + cardFileFace + '.png';
     log(cardImage);
 
+    shoeArrayStringified = JSON.stringify(shoeArray);
+    localStorage.setItem('shoe', shoeArrayStringified);
 
-//• cardValue
-//• This should be an integer value.
-//• You will need to apply suitable logic to derive the value:
-//• All cards with a numeric ‘face’ property will have a value that is the same as the
-//property’s value.
-//• Jacks, Queens and Kings all have a value of 10.
-//• Aces have a value of 1.
-//• Next, save the shoe array (now with one element removed) back to local storage.
-//• Finally, the function should create and return an object:
-//• The object should have two properties with keys/values as follows:
-//• image: the image file name derived from the card (e.g. ‘h12.jpg’).
-//• value: the value derived from the card (e.g. 10
+    // This it the object to return
+    cardObj = {};
+    cardObj.image = cardImage;
+    cardObj.value = cardValues[cardFaceIndex];
+    log(cardObj);
+
+    return cardObj;
 }
 
 function dealHands() {
