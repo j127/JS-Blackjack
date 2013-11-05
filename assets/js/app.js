@@ -15,6 +15,7 @@ function initGame() {
     } else {
         initErrors.push('Local storage not available.');
     }
+
     if(window.Mustache) {
         log('Mustache found');
     } else {
@@ -33,9 +34,6 @@ function initGame() {
         displayStatusMessage(errorMessage);
         return true;
     }
-
-
-    
 }
 
 function displayStatusMessage(msg) {
@@ -51,13 +49,14 @@ function newGame() {
     theShoe = JSON.parse(stringifiedShoe);
     log(theShoe);
 }
+
 function getShoe(decks) {
     var shoe = [];
 
     for (i = 0; i < decks; i++) {
         shoe.push(getDeck());
     }
-    
+
     stringifiedShoe = JSON.stringify(shoe);
     localStorage.setItem('shoe', stringifiedShoe);
 }
@@ -89,3 +88,25 @@ function shuffleDeck(o) {
     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i, 10), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 }
+
+function dealCard() {
+
+}
+
+function dealHands() {
+
+}
+
+function displayDealerHand() {
+
+}
+
+function displayPlayerHand() {
+
+}
+
+function displayStatusMessage() {
+
+}
+
+
