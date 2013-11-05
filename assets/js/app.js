@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    log('ready function is running');
     if(initGame() === false) {
         $('#newGame').prop('disabled', true);
     } else {
@@ -8,6 +9,7 @@ $(document).ready(function() {
     }
 });
 function initGame() {
+    log('initGame() function is running, checking dependencies');
     var initErrors = [], errorMessage = '';
 
     if(Modernizr.localstorage) {
@@ -37,10 +39,12 @@ function initGame() {
 }
 
 function displayStatusMessage(msg) {
+    log('displayStatusMessage(msg) function is running');
     $('#status').text(msg);
 }
 
 function newGame() {
+    log('newGame() function is running');
     // TODO: Clear local storage here?
 
     getShoe(2);
@@ -53,26 +57,34 @@ function newGame() {
     $('#btn-stand').fadeIn();
 
     stringifiedShoe = localStorage.getItem('shoe');
-    log(stringifiedShoe);
+    // log(stringifiedShoe);
+    log('newGame() got the shoe from local storage');
     theShoe = JSON.parse(stringifiedShoe);
-    log(theShoe);
+    // log(theShoe);
+    log('newGame() parsed the stringified shoe into an object');
 }
 
 function getShoe(decks) {
+    log('getShoe(decks) function is running where decks is: ' + decks);
     var shoe = [];
+
+    log('localStorage in the beginning of getShoe() is:');
+    console.dir(localStorage);
 
     for (i = 0; i < decks; i++) {
         shoe.push(getDeck());
     }
-
+    log('shoe length: ' + shoe.length);
     stringifiedShoe = JSON.stringify(shoe);
     localStorage.setItem('shoe', stringifiedShoe);
 }
 function getDeck() {
+    log('getDeck() function is running');
     var deck = [],
         suits = ['S', 'H', 'D', 'C'],
         faces = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
-        card = {};
+        card = {},
+        shuffledDeck = [];
 
     for (var i = 0, len = suits.length; i < len; i++) {
         for (var j = 0, len2 = faces.length; j < len2; j++) {
@@ -82,8 +94,11 @@ function getDeck() {
             deck.push(card);
         }
     }
+    // TODO: investigate why this returns shuffled deck before it's shuffled
+    log('getDeck() makes this deck:');
     log(deck);
     shuffledDeck = shuffleDeck(deck);
+    log('getDeck() just shuffled the deck like this:');
     log(shuffledDeck);
     return shuffledDeck;
 }
@@ -93,11 +108,13 @@ function log(msg) {
     console.log(msg);
 }
 function shuffleDeck(o) {
+    log('shuffleDeck(o) function is running with object: ' + o);
     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i, 10), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 }
 
 function dealCard() {
+    log('dealCard() function is running');
     var shoeArray = [],
         shoeArrayStringified,
         cardFace,
@@ -124,7 +141,8 @@ function dealCard() {
 
     // Make card an object instead of a one-element array
     card = card[0];
-
+    log('dealCard() says card is: ' + card);
+    log(card);
     cardFace = card.face;
     cardSuit = card.suit;
 
@@ -159,6 +177,7 @@ function dealCard() {
 }
 
 function dealHands() {
+    log('dealHands() function is running');
     var dealerHand = [],
         playerHand = [],
         dealerHandStringified,
@@ -178,6 +197,7 @@ function dealHands() {
 }
 
 function displayDealerHand(reveal) {
+    log('displayDealerHand(reveal) function is running with arg of: ' + reveal);
     var dealerHandStringified, dealerHand, hand;
 
     dealerHandStringified = localStorage.getItem('dealerHand');
@@ -199,6 +219,7 @@ function displayDealerHand(reveal) {
 }
 
 function displayPlayerHand() {
+    log('displayPlayerHand() function is running');
     var playerHandStringified, playerHand, hand;
 
     playerHandStringified = localStorage.getItem('playerHand');
@@ -212,6 +233,7 @@ function displayPlayerHand() {
 }
 
 function displayStatusMessage(msg) {
+    log('displayStatusMessage(msg) function is running where msg is: ' + msg);
     $('#status').text(msg);
 }
 
