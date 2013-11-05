@@ -42,6 +42,35 @@ function displayStatusMessage(msg) {
     $('#status').text(msg);
 }
 
+function newGame() {
+    getShoe();
+}
+function getShoe() {
+    
+}
+function getDeck() {
+    var deck =[],
+        suits = ['S', 'H', 'D', 'C'],
+        faces = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
+        card = {};
+
+    for (var i = 0, len = suits.length; i < len; i++) {
+        for (var j = 0, len2 = faces.length; j < len2; j++) {
+            //log('j:');
+            //log(j);
+            //log('i:');
+            //log(i);
+            card.suit = suits[i];
+            card.face = faces[j];
+            //log(card);
+            deck.push(card);
+        }
+    }
+    log(deck);
+}
+
+
 function log(msg) {
     console.log(msg);
 }
+
