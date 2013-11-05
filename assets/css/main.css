@@ -13,13 +13,13 @@ header h1 {
 #card-table {
     text-align: center;
     width: 900px;
-    height: 500px;
+    height: 600px;
     margin: 19px auto;
     background-color: #19c36b;
     border: 1px solid #19c36b;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-    border-radius: 4px;
+    border-radius: 30px;
     box-shadow: 0 0 19px 2px #060C4F;
 }
 #card-table h2 {
