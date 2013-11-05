@@ -188,16 +188,23 @@ function displayDealerHand(reveal) {
     var html = Mustache.render(template, hand);
 
     $('#dealer-hand').html(html);
-//• The hand variable should then be used to render the ‘tpl-hand’ template.
-//• The resulting output should be used to populate the div with an id of ‘dealer-hand’.
 }
 
 function displayPlayerHand() {
+    var playerHandStringified, playerHand, hand;
 
+    playerHandStringified = localStorage.getItem('playerHand');
+    playerHand = JSON.parse(playerHandStringified);
+    hand = playerHand;
+
+    var template = $('#tpl-hand').html();
+    var html = Mustache.render(template, hand);
+
+    $('#player-hand').html(html);
 }
 
-function displayStatusMessage() {
-
+function displayStatusMessage(msg) {
+    $('#status').text(msg);
 }
 
 
