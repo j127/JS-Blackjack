@@ -14,6 +14,7 @@ function initGame() {
 
     if(Modernizr.localstorage) {
         log('Modernizer found');
+        localStorage.clear();
     } else {
         initErrors.push('Local storage not available.');
     }
@@ -235,7 +236,7 @@ function displayDealerHand(reveal) {
 
 function displayPlayerHand() {
     log('displayPlayerHand() function is running');
-    var playerHandStringified, playerHand, hand;
+    var playerHandStringified, playerHand, hand = {};
 
     playerHandStringified = localStorage.getItem('playerHand');
     playerHand = JSON.parse(playerHandStringified);
