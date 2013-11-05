@@ -66,7 +66,9 @@ function newGame() {
 
 function getShoe(decks) {
     log('getShoe(decks) function is running where decks is: ' + decks);
-    var shoe = [];
+    var shoe = [],
+        flattenedShoe = [],
+        stringifiedFlattenedShoe;
 
     log('localStorage in the beginning of getShoe() is:');
     console.dir(localStorage);
@@ -74,9 +76,11 @@ function getShoe(decks) {
     for (i = 0; i < decks; i++) {
         shoe.push(getDeck());
     }
+    flattenedShoe = _.flatten(shoe);
     log('shoe length: ' + shoe.length);
-    stringifiedShoe = JSON.stringify(shoe);
-    localStorage.setItem('shoe', stringifiedShoe);
+    log('flattenedShoe length: ' + flattenedShoe.length);
+    stringifiedFlattenedShoe = JSON.stringify(flattenedShoe);
+    localStorage.setItem('shoe', stringifiedFlattenedShoe);
 }
 function getDeck() {
     log('getDeck() function is running');
@@ -137,7 +141,7 @@ function dealCard() {
     shoeArray = JSON.parse(shoeArrayStringified);
 
     // Get the first item
-    card = shoeArray[0].splice(0, 1);
+    card = shoeArray.splice(0, 1);
 
     // Make card an object instead of a one-element array
     card = card[0];
